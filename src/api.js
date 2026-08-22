@@ -1,8 +1,13 @@
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5001/api";
 
+function authHeaders() {
+  const token = localStorage.getItem("dayflow_token");
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
 async function request(path, options = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeaders() },
     ...options,
   });
 
@@ -27,4 +32,20 @@ export function signin(payload) {
     method: "POST",
     body: JSON.stringify(payload),
   });
+}
+
+export function getTodayAttendance() {
+  return request("/attendance/today");
+}
+
+export function checkIn() {
+  return request("/attendance/checkin", { method: "POST" });
+}
+
+export function checkOut() {
+  return request("/attendance/checkout", { method: "POST" });
+}
+
+export function getMyAttendance() {
+  return request("/attendance/me");
 }

@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
   res.send("Dayflow HRMS API is running");
 });
 
-app.use("/api/auth", authRoutes);
+app.use("/api/attendance", require("./routes/attendance"));
 
 // TODO (team - split these up):
 // app.use("/api/employees", require("./routes/employees"));   -> profile view/edit

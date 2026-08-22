@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ export default function Dashboard() {
         <div className="logo">Dayflow</div>
         <nav>
           <a className="active">Employees</a>
-          <a>Attendance</a>
+          <Link to="/attendance">Attendance</Link>
           <a>Time Off</a>
         </nav>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
